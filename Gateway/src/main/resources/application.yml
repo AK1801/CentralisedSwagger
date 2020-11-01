@@ -1,0 +1,27 @@
+server:
+  port: 8085
+debug: true
+spring:  cloud:    gateway:      routes:      - id: FirstMS
+        uri: http://localhost:8090/
+        predicates:
+        - Path=/msfirst/**
+      - id: SecondMS
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/mssecond/**
+
+        
+eureka:
+  instance:
+    appname: documentation-application
+  client:
+    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      
+swagger: 
+  config: 
+    refreshrate: 5000000
+      
